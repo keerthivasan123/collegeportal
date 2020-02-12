@@ -299,6 +299,63 @@
 								</div>
 							</div>
 						</div>
+						<h2 class="text-left">Cognizant Students Club</h2>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Year</th>
+									<th scope="col">Date</th>
+									<th scope="col">Event</th>
+								</tr>
+							</thead>
+							<tbody id="ctsClub-body">
+								<tr>
+									<td colspan="7" class="text-center">
+										<div class="text-center spinner-grow text-primary" role="status">
+											<span class="sr-only">Loading...</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h2 class="text-left">Google Developer Student  Club</h2>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Year</th>
+									<th scope="col">Date</th>
+									<th scope="col">Event</th>
+								</tr>
+							</thead>
+							<tbody id="googleDeveloper-body">
+								<tr>
+									<td colspan="7" class="text-center">
+										<div class="text-center spinner-grow text-primary" role="status">
+											<span class="sr-only">Loading...</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h2 class="text-left">Coding Club</h2>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Year</th>
+									<th scope="col">Date</th>
+									<th scope="col">Event</th>
+								</tr>
+							</thead>
+							<tbody id="codingClub-body">
+								<tr>
+									<td colspan="7" class="text-center">
+										<div class="text-center spinner-grow text-primary" role="status">
+											<span class="sr-only">Loading...</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</section>
 				</div>
 			</div>
@@ -483,6 +540,16 @@
 			`;
 		}
 
+		var clubActivitiesBuilder = (record) => {
+			return `
+				<tr>
+					<td>${record['Year']}</td>
+					<td>${record['Date']}</td>
+					<td>${record['Event']}</td>
+				</tr>
+			`;
+		}
+
 		axios.get(url + '?IndustrialVisits')
 			.then(e => {
 				document
@@ -502,6 +569,27 @@
 				document
 					.getElementById('symposium-winners-body')
 					.innerHTML = e.data.map(symposiumWinnerBuilder).join('');
+			});
+
+			axios.get(url + '?googleClub')
+			.then(e => {
+				document
+					.getElementById('googleDeveloper-body')
+					.innerHTML = e.data.map(clubActivitiesBuilder).join('');
+			});
+		
+			axios.get(url + '?ctsClub')
+			.then(e => {
+				document
+					.getElementById('ctsClub-body')
+					.innerHTML = e.data.map(clubActivitiesBuilder).join('');
+			});
+
+			axios.get(url + '?codingClub')
+			.then(e => {
+				document
+					.getElementById('codingClub-body')
+					.innerHTML = e.data.map(clubActivitiesBuilder).join('');
 			});
 
 		axios.get(url + '?NGO')
