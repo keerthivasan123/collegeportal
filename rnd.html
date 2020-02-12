@@ -86,7 +86,6 @@
 					<a class="col-12 text-light p-3 ripple" href="#research-publications">Research Publications</a>
 					<a class="col-12 text-light p-3 ripple" href="#ipr">IPR</a>
 					<a class="col-12 text-light p-3 ripple" href="#fdtp">FDTP Organized</a>
-					<a class="col-12 text-light p-3 ripple" href="#phd">PHD</a>
 				</div>
 			</div>
 			<div class="col-lg-2 col-sm-12 p-0 m-0 bg-primary d-block d-md-none" style="overflow-x:auto;">
@@ -95,7 +94,6 @@
 					<a class="text-light p-3" href="#research-publications">Research Publications</a>
 					<a class="text-light p-3" href="#ipr">IPR</a>
 					<a class="text-light p-3" href="#fdtp">FDTP Organized</a>
-					<a class="text-light p-3" href="#phd">PHD</a>
 				</div>
 			</div>
 			<div class="col-12 col-md-10 scrollable">
@@ -192,66 +190,6 @@
 								</tr>
 							</thead>
 							<tbody id="fdtp-body">
-								<tr>
-									<td colspan="7" class="text-center">
-										<div class="text-center spinner-grow text-primary" role="status">
-											<span class="sr-only">Loading...</span>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</section>
-					<section class="p-4" id="phd">
-						<h2 class="text-left">Ph.D Awarded</h2>
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Name</th>
-									<th scope="col">Area of Specialization</th>
-									<th scope="col">University Name</th>
-									<th scope="col">Awarded Year</th>
-								</tr>
-							</thead>
-							<tbody id="phdAwarded-body">
-								<tr>
-									<td colspan="7" class="text-center">
-										<div class="text-center spinner-grow text-primary" role="status">
-											<span class="sr-only">Loading...</span>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<h2 class="text-left">Ph.D Pursuing</h2>
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Name</th>
-									<th scope="col">Area of Specialization</th>
-									<th scope="col">University Name</th>
-								</tr>
-							</thead>
-							<tbody id="phdPursuing-body">
-								<tr>
-									<td colspan="7" class="text-center">
-										<div class="text-center spinner-grow text-primary" role="status">
-											<span class="sr-only">Loading...</span>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<h2 class="text-left">Supervisor of Anna University</h2>
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Supervisor Name</th>
-									<th scope="col">Reference Number</th>
-									<th scope="col">Research Area</th>
-								</tr>
-							</thead>
-							<tbody id="supervisor-body">
 								<tr>
 									<td colspan="7" class="text-center">
 										<div class="text-center spinner-grow text-primary" role="status">
@@ -406,20 +344,7 @@
 				<tr>
 					<th scope="row">${record['No']}</th>
 					<td>${record['Title']}</td>
-					${
-				(record['Inventors'].trim()) ?
-					`
-											<td>
-												<ol>
-													${
-					record['Inventors'].split("\n")
-						.map(e => "<li>" + e + "</li>").join('')
-					}
-												</ol>
-											</td>
-										`:
-					""
-				}
+					<td>${record['Inventors']}</td>
 					<td>${record['Filing Date']}</td>
 					<td>${record['Published Date']}</td>
 				</tr>
@@ -431,20 +356,7 @@
 				<tr>
 					<th scope="row">${record['No']}</th>
 					<td>${record['Title']}</td>
-					${
-				(record['Inventors'].trim()) ?
-					`
-											<td>
-												<ol>
-													${
-					record['Inventors'].split("\n")
-						.map(e => "<li>" + e + "</li>").join('')
-					}
-												</ol>
-											</td>
-										`:
-					""
-				}
+					<td>${record['Inventors']}</td>
 					<td>${record['Filing Date']}</td>
 					<td>${record['Category']}</td>
 				</tr>
@@ -484,57 +396,11 @@
 					<td>${record['Name']}</td>
 					<td>${record['Dates']}</td>
 					<td>${record['Sponsor']}</td>
-					${
-				(record['Coordinators'].trim()) ?
-					`
-											<td>
-												<ol>
-													${
-					record['Coordinators'].split("\n")
-						.map(e => "<li>" + e + "</li>").join('')
-					}
-												</ol>
-											</td>
-										`:
-					""
-				}
+					<td>${record['Coordinators']}</td>
 				</tr>
 			`;
 		}
 
-		var phdAwardedBuilder = (record) => {
-			// Replace regular hyphen by non breaking hyphen
-			return `
-				<tr>
-					<td>${record['Name']}</td>
-					<td>${record['Specialization']}</td>
-					<td>${record['University']}</td>
-					<td>${record['Year']}</td>
-				</tr>
-			`;
-		}
-
-		var phdPursuingBuilder = (record) => {
-			// Replace regular hyphen by non breaking hyphen
-			return `
-				<tr>
-					<td>${record['Name']}</td>
-					<td>${record['Specialization']}</td>
-					<td>${record['University']}</td>
-				</tr>
-			`;
-		}
-
-		var supervisorBuilder = (record) => {
-			// Replace regular hyphen by non breaking hyphen
-			return `
-				<tr>
-					<td>${record['Name']}</td>
-					<td>${record['ReferenceNumber']}</td>
-					<td>${record['ResearchArea']}</td>
-				</tr>
-			`;
-		}
 		axios.get(url + '?SponsoredProposals')
 			.then(e => {
 				document
@@ -561,15 +427,12 @@
 				var allRecords = e.data;
 
 				var yearWiseData = {};
-				console.log(allRecords);
+
 				for (var key in allRecords) {
 					var record = allRecords[key];
-					console.log(key, record);
 					var year = record['Year'];
-					console.log(year);
 					yearWiseData[year] = yearWiseData[year] || [];
 					yearWiseData[year].push(record);
-					console.log(yearWiseData[year]);
 				}
 
 				document
@@ -608,27 +471,6 @@
 				document
 					.getElementById('fdtp-body')
 					.innerHTML = e.data.map(fdtpBuilder).join('');
-			});
-
-		axios.get(url + '?PhdAwarded')
-			.then(e => {
-				document
-					.getElementById('phdAwarded-body')
-					.innerHTML = e.data.map(phdAwardedBuilder).join('');
-			});
-
-		axios.get(url + '?PhdPursuing')
-			.then(e => {
-				document
-					.getElementById('phdPursuing-body')
-					.innerHTML = e.data.map(phdPursuingBuilder).join('');
-			});
-
-		axios.get(url + '?Supervisor')
-			.then(e => {
-				document
-					.getElementById('supervisor-body')
-					.innerHTML = e.data.map(supervisorBuilder).join('');
 			});
 
 	</script>

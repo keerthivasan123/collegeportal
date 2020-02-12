@@ -17,7 +17,6 @@
         rel='stylesheet' type='text/css'>
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/placement.css" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -34,7 +33,6 @@
     <script type="text/javascript" src="js/classie.js"></script>
     <script type="text/javascript" src="js/magnific-popup.js"></script>
     <script src="contactform/contactform.js"></script>
-
 
 </head>
 
@@ -112,120 +110,6 @@
                             </div>
                         </div>
                     </section>
-                    <section class="p-4">
-                        <h2>Training Partners</h2>
-                        <div class="row py-4" id="training-body">
-                            <div class="col-12 text-center">
-                                <div class="text-center spinner-grow text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <h2 ">Training Programs</h2>
-                    <section class=" timeline">
-
-                        <div class="container">
-                            <br /><br />
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester1</div>
-                                    <p>Communication Skill Enhancement by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">Strides &
-                                            Winspire</Strides>
-                                    </p><br />
-
-
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester2</div>
-                                    <p>Aptitude Crash Course by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">SMART
-                                            </Strides>
-                                    </p>
-
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester3</div>
-                                    <p>British English Certification Training by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">Strides &
-                                            Winspire</Strides>
-                                    </p>
-                                    <p>C Programming Training by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">MY
-                                            SLATE</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester4</div>
-                                    <p>Datastructures Training by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">MY
-                                            SLATE</span>
-                                    </p>
-                                    <p>Department Specific Value Added Course
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester5</div>
-                                    <p>Training to crack dream companies(Minimum of 4.5 Lakhs / Annum)
-                                    </p>
-                                    <p>Advanced Datastructures Training by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">MY
-                                            SLATE</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester6</div>
-                                    <p>Training to crack super dream companies(Minimum of 10 Lakhs / Annum)
-                                    </p>
-                                    <p>AMCAT Assessment by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">ASPIRING
-                                            MINDS</span>
-                                    </p>
-                                    <p>Aptitude Training
-                                    </p>
-                                    <p>Datastructures & Algorithm Training by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">MY
-                                            SLATE</span>
-                                    </p>
-                                    <p>Campany specific coding skill Training
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-content js--fadeInLeft">
-                                    <h2>Programs</h2>
-                                    <div class="date">Semester7</div>
-                                    <p>CoCubes Online Assessments by:
-                                        <span style="height: 20px; text-weight: "
-                                            class="badge badge-primary">CoCubes</span>
-                                    </p>
-                                    <p>AMCAT Assessment by:
-                                        <span style="height: 20px; text-weight: " class="badge badge-primary">ASPIRING
-                                            MINDS</span>
-                                    </p>
-                                    <p>Mock Interview </p>
-                                    <p>Company specific Aptitude </p>
-                                </div>
-                            </div>
-                        </div>
-                        </section>
                 </div>
             </div>
         </div>
@@ -258,7 +142,6 @@
             });
 
         });
-
     </script>
 
     <script>
@@ -275,6 +158,7 @@
 
             $('.main-nav li a, .servicelink').bind('click', function (event) {
                 var $anchor = $(this);
+
                 $('html, body').stop().animate({
                     scrollTop: $($anchor.attr('href')).offset().top - 102
                 }, 1500, 'easeInOutExpo');
@@ -382,26 +266,6 @@
             `;
         }
 
-        var trainingBuilder = (record) => {
-            return `
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="m-4">
-                                <div class="company-image"
-                                    style="background-image:url('${record['Image']}');">
-                                </div>
-                            </div>
-                            <p class="text-left">
-                                <h5 class="text-dark">${record['Company']}</h5>
-                                <h6 class="text-left p-0 m-0">${record['Description']}</h6>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
         var labels = [];
         var data = [];
 
@@ -464,14 +328,9 @@
                     .getElementById('companies-body')
                     .innerHTML = e.data.map(companyBuilder).join('');
             })
-        axios.get(url + '?TrainingPartners')
-            .then(e => {
-                document
-                    .getElementById('training-body')
-                    .innerHTML = e.data.map(trainingBuilder).join('');
-            })
+
     </script>
-    <script src="js/placement.js"></script>
+
 </body>
 
 </html>
