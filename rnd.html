@@ -15,7 +15,7 @@
 	<link
 		href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600'
 		rel='stylesheet' type='text/css'>
-
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -86,6 +86,7 @@
 					<a class="col-12 text-light p-3 ripple" href="#research-publications">Research Publications</a>
 					<a class="col-12 text-light p-3 ripple" href="#ipr">IPR</a>
 					<a class="col-12 text-light p-3 ripple" href="#fdtp">FDTP Organized</a>
+					<a class="col-12 text-light p-3 ripple" href="#Copyright">Copyright</a>
 				</div>
 			</div>
 			<div class="col-lg-2 col-sm-12 p-0 m-0 bg-primary d-block d-md-none" style="overflow-x:auto;">
@@ -94,6 +95,7 @@
 					<a class="text-light p-3" href="#research-publications">Research Publications</a>
 					<a class="text-light p-3" href="#ipr">IPR</a>
 					<a class="text-light p-3" href="#fdtp">FDTP Organized</a>
+					<a class="text-light p-3" href="#Copyright">Copyright</a>
 				</div>
 			</div>
 			<div class="col-12 col-md-10 scrollable">
@@ -101,7 +103,7 @@
 					<h1 class="m-4 mt-5 text-dark">Research and Developement</h1>
 					<section class="p-4" id="sponsored-proposals">
 						<h2 class="text-left">Sponsored Proposals</h2>
-						<table class="table">
+						<table   class="table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
@@ -156,6 +158,9 @@
 								</tr>
 							</tbody>
 						</table>
+					</section>
+						<section class="p-4" id="Copyright">
+						<h2 class="text-left">Copyright</h2>
 						<table class="table">
 							<thead>
 								<tr>
@@ -328,25 +333,26 @@
 		var sponsoredProposalsBuilder = (record) => {
 			return `
 				<tr>
-					<th scope="row">${record['SNo']}</th>
-					<td>${record['Title']}</td>
-					<td>${record['Funding Agency']}</td>
-					<td>${record['Amount']}</td>
-					<td>${record['Coordinators']}</td>
-					<td>${record['Duration']}</td>
-					<td>${record['Status']}</td>
+					<th scope="row"><b>${record['SNo']}</b></th>
+					<b><td>${record['Title']}</td></b>
+					<td><b>${record['Funding Agency']}</b></td>
+					<td><b>₹${record['Amount']}/-</b></td>
+					<td><b>${record['Coordinators']}</b></td>
+					<td><b>${record['Duration']}</b></td>
+					<td><b>${record['Status']}</b></td>
 				</tr>
+				
 			`;
 		}
 
 		var patentsBuilder = (record) => {
 			return `
 				<tr>
-					<th scope="row">${record['No']}</th>
-					<td>${record['Title']}</td>
-					<td>${record['Inventors']}</td>
-					<td>${record['Filing Date']}</td>
-					<td>${record['Published Date']}</td>
+					<th scope="row"><b>${record['No']}</b></th>
+					<td><b>${record['Title']}</b></td>
+					<td><b>${record['Inventors']}</b></td>
+					<td><b>${record['Filing Date']}</b></td>
+					<td><b>${record['Published Date']}</b></td>
 				</tr>
 			`;
 		}
@@ -354,11 +360,11 @@
 		var copyrightsBuilder = (record) => {
 			return `
 				<tr>
-					<th scope="row">${record['No']}</th>
-					<td>${record['Title']}</td>
-					<td>${record['Inventors']}</td>
-					<td>${record['Filing Date']}</td>
-					<td>${record['Category']}</td>
+					<th scope="row"><b>${record['No']}</b></th>
+					<td><b>${record['Title']}</b></td>
+					<td><b>${record['Inventors']}</b></td>
+					<td><b>${record['Filing Date']}</b></td>
+					<td><b>${record['Category']}</b></td>
 				</tr>
 			`;
 		}
@@ -366,22 +372,24 @@
 		var publicationBuilder = (record) => {
 			return `
 				<li class="text-dark py-3">
-					<b>
+					<b style="font-family: 'Josefin Sans', sans-serif;">
 						${record['Staff']}
 					</b>
-					${record['Other Authors']} 
+					<b>
+					${record['Other Authors']}
+					</b> 
 					| ${record['Type']} &nbsp;
 
 					<span class="badge badge-pill badge-primary">${record['Tags'].trim()}</span>				
 					<br>
 
 					<span>
-						${record['Title']} 
+						<b>${record['Title']}</b> 
 					</span>
 					<br>
 
 					<i>
-						${record['Published In']}<br>
+						<b>${record['Published In']}</b><br>
 						${record['Number']}
 					</i>
 				</li>
@@ -392,17 +400,20 @@
 			// Replace regular hyphen by non breaking hyphen
 			return `
 				<tr>
+				
 					<th scope="row">${record['Year'].replace(/-/g, '&#8209;')}</th>
-					<td>${record['Name']}</td>
-					<td>${record['Dates']}</td>
-					<td>${record['Sponsor']}</td>
-					<td>${record['Coordinators']}</td>
+				 	<td><b>${record['Name']}</b></td>
+					<td><b>${record['Dates']}</b></td>
+					<td><b>${record['Sponsor']}</b></td>
+					<td><b>${record['Coordinators']}</b></td>
+				
 				</tr>
 			`;
 		}
 
 		axios.get(url + '?SponsoredProposals')
 			.then(e => {
+				
 				document
 					.getElementById('sponsored-proposals-body')
 					.innerHTML = e.data.map(sponsoredProposalsBuilder).join('');
@@ -424,15 +435,21 @@
 
 		axios.get(url + '?Publications')
 			.then(e => {
+				console.log(e);
 				var allRecords = e.data;
 
-				var yearWiseData = {};
+				var yearWiseData = {} ;
 
 				for (var key in allRecords) {
+					
 					var record = allRecords[key];
 					var year = record['Year'];
 					yearWiseData[year] = yearWiseData[year] || [];
+					// alert(record)
+					// alert(year)
+					// alert(yearWiseData[year])
 					yearWiseData[year].push(record);
+					//console.log(yearWiseData[year]);
 				}
 
 				document
@@ -445,10 +462,10 @@
 							<div class="card">
 								<div class="card-header" id="headingOne">
 									<h2 class="mb-0 text-left">
-										<button class="btn btn-link" type="button" data-toggle="collapse"
-											data-target="#year${key}">
-											Academic year ${key}
-										</button>
+											<a href="#year${key}" class="btn btn-link" type="button" data-toggle="collapse"
+											style="text-decoration:none">
+											<b class="text-black" >Academic year ${key}</b>
+										</a>
 									</h2>
 								</div>
 
