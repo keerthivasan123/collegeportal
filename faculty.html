@@ -327,6 +327,8 @@
 					""
 				}
 							${
+
+
 				(record['FDTP Organized'].trim()) ?
 					`
 								<tr>
@@ -341,7 +343,18 @@
 									</td>
 								</tr>`:
 					""
+				}	
+				${
+				(record["FDTPAttended"]) ?
+					`<tr> 
+						<th scope="row">FDTP&nbsp;Attented:</th> 
+						<td>${record["FDTPAttended"]}</td>
+					</tr>`: ""
+
 				}
+					
+					
+						
 							${
 				(record['Patent'].trim()) ?
 					`
@@ -396,6 +409,7 @@
 
 		axios.get(url + '?Faculty')
 			.then(e => {
+				console.log(e.data[0]["FDTPAttended"]);
 				document
 					.getElementById('faculty-images-container')
 					.innerHTML = e.data.map(facultyImageBuilder).join('');
