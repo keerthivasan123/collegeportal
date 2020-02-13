@@ -693,6 +693,27 @@
 					.innerHTML = e.data.map(symposiumWinnerBuilder).join('');
 			});
 
+			axios.get(url + '?googleClub')
+			.then(e => {
+				document
+					.getElementById('googleDeveloper-body')
+					.innerHTML = e.data.map(clubActivitiesBuilder).join('');
+			});
+
+		axios.get(url + '?ctsClub')
+			.then(e => {
+				document
+					.getElementById('ctsClub-body')
+					.innerHTML = e.data.map(clubActivitiesBuilder).join('');
+			});
+
+		axios.get(url + '?codingClub')
+			.then(e => {
+				document
+					.getElementById('codingClub-body')
+					.innerHTML = e.data.map(clubActivitiesBuilder).join('');
+			});
+
 		axios.get(url + '?NGO')
 			.then(e => {
 				var allRecords = e.data;
